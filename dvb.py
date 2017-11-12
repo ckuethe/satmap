@@ -587,9 +587,9 @@ def open_fe(frontend):
 		return None, None, e
 
 	if not fe.type == FE_TYPE_QPSK:
-		print 'Fail! Wrong DVB type: %s - Only QPSK (DVB-S) devices supported.' % FE_TYPE_T[fe.type]
+		print 'Warning! Wrong DVB type: %s - Only QPSK (DVB-S) devices supported.' % FE_TYPE_T[fe.type]
 		print
-		os._exit(False)
+		# os._exit(False)
 	#
 	# (IO is asynch, so we need a polling mechanism)
 	#
