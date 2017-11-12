@@ -26,6 +26,8 @@
 import dvb
 import time
 from utils import *
+import os
+from stat import *
 
 version= "1.0a"
 
@@ -192,6 +194,10 @@ while current < len(sys.argv):
 	if command == 'FE':
 		current += 1
 		DVB_FE_Device= sys.argv[current]
+
+		if not os.path.exists(DVB_FE_Device) or not S_ISCHR(os.stat(DVB_FE_Device).st_mode):
+			DVB_FE_Device= "%s/frontend%s" % (dvb.adapter(), sys.argv[current])
+
 		print
 		print '  Setting FE to', DVB_FE_Device, '-',
 		sys.stdout.flush()
